@@ -1,6 +1,6 @@
 package com.example.tiendas_service.controller;
 
-import com.example.tiendas_service.model.Tienda;
+import com.example.tiendas_service.dto.TiendaDTO;
 import com.example.tiendas_service.service.TiendaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,35 +19,35 @@ public class TiendaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Tienda>> listarTiendas() {
-        List<Tienda> tiendas = tiendaService.listarTiendas();
+    public ResponseEntity<List<TiendaDTO>> listarTiendas() {
+        List<TiendaDTO> tiendas = tiendaService.listarTiendas();
         return ResponseEntity.ok(tiendas);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Tienda> buscarTiendaPorId(@PathVariable Long id) {
+    public ResponseEntity<TiendaDTO> buscarTiendaPorId(@PathVariable Long id) {
         return tiendaService.buscarTiendaPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Tienda> crearTienda(@RequestBody Tienda tienda) {
-        Tienda nuevaTienda = tiendaService.guardarTienda(tienda);
+    public ResponseEntity<TiendaDTO> crearTienda(@RequestBody TiendaDTO tiendaDTO) {
+        TiendaDTO nuevaTienda = tiendaService.guardarTienda(tiendaDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevaTienda);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Tienda> actualizarTienda(
+    public ResponseEntity<TiendaDTO> actualizarTienda(
             @PathVariable Long id,
-            @RequestBody Tienda tienda) {
+            @RequestBody TiendaDTO tiendaDTO) {
 
         if (!tiendaService.existeTiendaPorId(id)) {
             return ResponseEntity.notFound().build();
         }
 
-        tienda.setIdTienda(id);
-        Tienda tiendaActualizada = tiendaService.guardarTienda(tienda);
+        tiendaDTO.setIdTienda(id);
+        TiendaDTO tiendaActualizada = tiendaService.guardarTienda(tiendaDTO);
         return ResponseEntity.ok(tiendaActualizada);
     }
 
