@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
+import com.example.tiendas_service.dto.ActualizarEstadoTiendaDTO;
 
 import java.util.List;
 
@@ -50,6 +51,16 @@ public class TiendaController {
         tiendaDTO.setIdTienda(id);
         TiendaDTO tiendaActualizada = tiendaService.guardarTienda(tiendaDTO);
         return ResponseEntity.ok(tiendaActualizada);
+    }
+
+    @PatchMapping("/{id}/estado")
+public ResponseEntity<TiendaDTO> actualizarEstadoTienda(
+        @PathVariable Long id,
+        @Valid @RequestBody ActualizarEstadoTiendaDTO estadoDTO) {
+
+    return tiendaService.actualizarEstadoTienda(id, estadoDTO.getActiva())
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")

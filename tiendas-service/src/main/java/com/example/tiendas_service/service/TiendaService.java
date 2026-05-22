@@ -45,6 +45,15 @@ public class TiendaService {
         tiendaRepository.deleteById(id);
     }
 
+    public Optional<TiendaDTO> actualizarEstadoTienda(Long id, Boolean activa) {
+    return tiendaRepository.findById(id)
+            .map(tienda -> {
+                tienda.setActiva(activa);
+                Tienda tiendaActualizada = tiendaRepository.save(tienda);
+                return convertirADTO(tiendaActualizada);
+            });
+    }
+
     private TiendaDTO convertirADTO(Tienda tienda) {
         return new TiendaDTO(
                 tienda.getIdTienda(),
