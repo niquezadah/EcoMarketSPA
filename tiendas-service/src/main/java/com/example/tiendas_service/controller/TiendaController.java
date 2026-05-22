@@ -5,6 +5,7 @@ import com.example.tiendas_service.service.TiendaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class TiendaController {
     }
 
     @PostMapping
-    public ResponseEntity<TiendaDTO> crearTienda(@RequestBody TiendaDTO tiendaDTO) {
+    public ResponseEntity<TiendaDTO> crearTienda(@Valid @RequestBody TiendaDTO tiendaDTO) {
         TiendaDTO nuevaTienda = tiendaService.guardarTienda(tiendaDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevaTienda);
     }
@@ -40,7 +41,7 @@ public class TiendaController {
     @PutMapping("/{id}")
     public ResponseEntity<TiendaDTO> actualizarTienda(
             @PathVariable Long id,
-            @RequestBody TiendaDTO tiendaDTO) {
+            @Valid @RequestBody TiendaDTO tiendaDTO) {
 
         if (!tiendaService.existeTiendaPorId(id)) {
             return ResponseEntity.notFound().build();
