@@ -22,16 +22,16 @@ public class Tienda {
     @Column(nullable = false, length = 150)
     private String direccion;
 
-    @Column(nullable = false, length = 80)
+    @Column(nullable = false, length = 50)
     private String comuna;
 
-    @Column(nullable = false, length = 80)
+    @Column(nullable = false, length = 50)
     private String ciudad;
 
-    @Column(nullable = false, length = 80)
+    @Column(nullable = false, length = 50)
     private String region;
 
-    @Column(length = 20)
+    @Column(length = 12)
     private String telefono;
 
     @Column(length = 300)

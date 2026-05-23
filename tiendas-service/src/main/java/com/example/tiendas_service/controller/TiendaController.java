@@ -54,7 +54,7 @@ public class TiendaController {
     }
 
     @PatchMapping("/{id}/estado")
-public ResponseEntity<TiendaDTO> actualizarEstadoTienda(
+    public ResponseEntity<TiendaDTO> actualizarEstadoTienda(
         @PathVariable Long id,
         @Valid @RequestBody ActualizarEstadoTiendaDTO estadoDTO) {
 
