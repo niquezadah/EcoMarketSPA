@@ -1,5 +1,4 @@
 package com.example.inventario_catalogo_service.model;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
