@@ -32,7 +32,7 @@ public class ProductoDTO {
     private Integer stock;
 
     @NotNull(message = "El PRECIO es OBLIGATORIO")
-    @PositiveOrZero(message = "El PRECIO no puede ser negativo")
+    @PositiveOrZero(message = "El PRECIO no puede ser NEGATIVO")
     private Double precio;
 
     @NotNull(message = "El estado DISPONIBLE es OBLIGATORIO")
