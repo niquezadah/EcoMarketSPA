@@ -30,4 +30,18 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(respuesta);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Map<String, Object>> manejarRuntimeException(RuntimeException ex) {
+
+        Map<String, Object> respuesta = new HashMap<>();
+
+        respuesta.put("timestamp", LocalDateTime.now());
+        respuesta.put("status", HttpStatus.BAD_REQUEST.value());
+        respuesta.put("error", "ERROR DE SOLICITUD");
+        respuesta.put("mensaje", ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(respuesta);
+    }
+    
 }

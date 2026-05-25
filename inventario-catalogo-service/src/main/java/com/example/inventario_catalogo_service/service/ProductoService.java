@@ -5,6 +5,9 @@ import com.example.inventario_catalogo_service.model.Producto;
 import com.example.inventario_catalogo_service.repository.ProductoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.example.inventario_catalogo_service.dto.TiendaDTO;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +17,11 @@ import java.util.Optional;
 public class ProductoService {
 
     private final ProductoRepository productoRepository;
+    private final RestTemplate restTemplate;
 
-    public ProductoService(ProductoRepository productoRepository) {
-        this.productoRepository = productoRepository;
+    public ProductoService(ProductoRepository productoRepository, RestTemplate restTemplate) {
+    this.productoRepository = productoRepository;
+    this.restTemplate = restTemplate;
     }
 
     public List<ProductoDTO> listarProductos() {
@@ -32,6 +37,7 @@ public class ProductoService {
     }
 
     public ProductoDTO guardarProducto(ProductoDTO productoDTO) {
+        validarTiendaExiste(productoDTO.getIdTienda());
         Producto producto = convertirAEntidad(productoDTO);
         Producto productoGuardado = productoRepository.save(producto);
         return convertirADTO(productoGuardado);
@@ -91,4 +97,14 @@ public class ProductoService {
                 productoDTO.getIdTienda()
         );
     }
+
+    private void validarTiendaExiste(Long idTienda) {
+        try {
+            String url = "http://localhost:8081/api/v1/tiendas/" + idTienda;
+            restTemplate.getForObject(url, TiendaDTO.class);
+        } catch (HttpClientErrorException.NotFound ex) {
+            throw new RuntimeException("La tienda con ID " + idTienda + " no existe");
+        }
+    }
+
 }
