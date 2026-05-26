@@ -48,7 +48,7 @@ public class ResenaController {
         }
 
         resenaDTO.setIdResena(id);
-        ResenaDTO resenaActualizada = resenaService.guardarResena(resenaDTO);
+        ResenaDTO resenaActualizada = resenaService.actualizarResena(resenaDTO);
         return ResponseEntity.ok(resenaActualizada);
     }
 

@@ -5,6 +5,9 @@ import com.example.soporte_resena_service.model.Resena;
 import com.example.soporte_resena_service.repository.ResenaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.example.soporte_resena_service.dto.ProductoDTO;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,10 +16,12 @@ import java.util.Optional;
 @Transactional
 public class ResenaService {
 
+    private final RestTemplate restTemplate;
     private final ResenaRepository resenaRepository;
 
-    public ResenaService(ResenaRepository resenaRepository) {
+    public ResenaService(ResenaRepository resenaRepository, RestTemplate restTemplate) {
         this.resenaRepository = resenaRepository;
+        this.restTemplate = restTemplate;
     }
 
     public List<ResenaDTO> listarResenas() {
@@ -32,9 +37,19 @@ public class ResenaService {
     }
 
     public ResenaDTO guardarResena(ResenaDTO resenaDTO) {
+        validarProductoExiste(resenaDTO.getIdProducto());
+
         Resena resena = convertirAEntidad(resenaDTO);
         Resena resenaGuardada = resenaRepository.save(resena);
         return convertirADTO(resenaGuardada);
+    }
+
+    public ResenaDTO actualizarResena(ResenaDTO resenaDTO) {
+        validarProductoExiste(resenaDTO.getIdProducto());
+
+        Resena resena = convertirAEntidad(resenaDTO);
+        Resena resenaActualizada = resenaRepository.save(resena);
+        return convertirADTO(resenaActualizada);
     }
 
     public boolean existeResenaPorId(Long id) {
@@ -43,6 +58,15 @@ public class ResenaService {
 
     public void eliminarResena(Long id) {
         resenaRepository.deleteById(id);
+    }
+
+    private void validarProductoExiste(Long idProducto) {
+        try {
+            String url = "http://localhost:8082/api/v1/productos/" + idProducto;
+            restTemplate.getForObject(url, ProductoDTO.class);
+        } catch (HttpClientErrorException.NotFound ex) {
+            throw new RuntimeException("El producto con ID " + idProducto + " no existe");
+        }
     }
 
     public List<ResenaDTO> listarResenasPorProducto(Long idProducto) {
@@ -87,4 +111,5 @@ public class ResenaService {
                 resenaDTO.getActiva()
         );
     }
+    
 }
