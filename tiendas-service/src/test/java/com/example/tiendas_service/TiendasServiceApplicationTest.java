@@ -9,15 +9,15 @@ class TiendasServiceApplicationTest {
 
     @Test
     void main_deberiaEjecutarSpringApplicationRun() {
-        // Given
+        //given
         String[] args = {};
 
         try (MockedStatic<SpringApplication> springApplicationMock = Mockito.mockStatic(SpringApplication.class)) {
 
-            // When
+            //when
             TiendasServiceApplication.main(args);
 
-            // Then
+            //then
             springApplicationMock.verify(
                     () -> SpringApplication.run(TiendasServiceApplication.class, args)
             );
