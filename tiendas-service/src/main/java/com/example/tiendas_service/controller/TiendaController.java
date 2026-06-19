@@ -8,6 +8,9 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,8 +71,31 @@ public class TiendaController {
             description = "Crea una nueva tienda para Perfulandia."
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "201", description = "Tienda creada correctamente"),
-            @ApiResponse(responseCode = "400", description = "Datos inválidos o campos obligatorios faltantes")
+        @ApiResponse(
+                responseCode = "201",
+                description = "Tienda creada correctamente"
+        ),
+        @ApiResponse(
+                responseCode = "400",
+                description = "Datos inválidos o campos obligatorios faltantes",
+                content = @Content(
+                        mediaType = "application/json",
+                        schema = @Schema(type = "object"),
+                        examples = @ExampleObject(
+                                name = "Error de validación",
+                                value = """
+                                        {
+                                          "timestamp": "2026-06-19T12:00:00",
+                                          "status": 400,
+                                          "error": "ERROR VALIDACIÓN",
+                                          "mensajes": {
+                                            "nombre": "El NOMBRE de la TIENDA es OBLIGATORIO"
+                                          }
+                                        }
+                                        """
+                        )
+                )
+        )
     })
     @PostMapping
     public ResponseEntity<TiendaDTO> crearTienda(
