@@ -110,10 +110,36 @@ public class TiendaController {
             description = "Actualiza todos los datos de una tienda existente."
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Tienda actualizada correctamente"),
-            @ApiResponse(responseCode = "400", description = "Datos inválidos o campos obligatorios faltantes"),
-            @ApiResponse(responseCode = "404", description = "No existe una tienda con el ID indicado")
-    })
+        @ApiResponse(
+                responseCode = "200",
+                description = "Tienda actualizada correctamente"
+        ),
+        @ApiResponse(
+                responseCode = "400",
+                description = "Datos inválidos o campos obligatorios faltantes",
+                content = @Content(
+                        mediaType = "application/json",
+                        schema = @Schema(type = "object"),
+                        examples = @ExampleObject(
+                                name = "Error de validación",
+                                value = """
+                                        {
+                                          "timestamp": "2026-06-19T12:00:00",
+                                          "status": 400,
+                                          "error": "ERROR VALIDACIÓN",
+                                          "mensajes": {
+                                            "nombre": "El NOMBRE de la TIENDA es OBLIGATORIO"
+                                          }
+                                        }
+                                        """
+                        )
+                )
+        ),
+        @ApiResponse(
+                responseCode = "404",
+                description = "No existe una tienda con el ID indicado"
+        )
+        })
     @PutMapping("/{id}")
     public ResponseEntity<TiendaDTO> actualizarTienda(
             @Parameter(
@@ -137,10 +163,36 @@ public class TiendaController {
             description = "Activa o desactiva una tienda sin modificar el resto de sus datos."
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Estado de la tienda actualizado correctamente"),
-            @ApiResponse(responseCode = "400", description = "Estado activo no informado o inválido"),
-            @ApiResponse(responseCode = "404", description = "No existe una tienda con el ID indicado")
-    })
+        @ApiResponse(
+                responseCode = "200",
+                description = "Estado de la tienda actualizado correctamente"
+        ),
+        @ApiResponse(
+                responseCode = "400",
+                description = "Estado activo no informado o inválido",
+                content = @Content(
+                        mediaType = "application/json",
+                        schema = @Schema(type = "object"),
+                        examples = @ExampleObject(
+                                name = "Error de validación",
+                                value = """
+                                        {
+                                          "timestamp": "2026-06-19T12:00:00",
+                                          "status": 400,
+                                          "error": "ERROR VALIDACIÓN",
+                                          "mensajes": {
+                                            "activa": "El ESTADO ACTIVO es OBLIGATORIO"
+                                          }
+                                        }
+                                        """
+                        )
+                )
+        ),
+        @ApiResponse(
+                responseCode = "404",
+                description = "No existe una tienda con el ID indicado"
+        )
+        })
     @PatchMapping("/{id}/estado")
     public ResponseEntity<TiendaDTO> actualizarEstadoTienda(
             @Parameter(
