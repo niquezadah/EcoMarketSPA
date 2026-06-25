@@ -6,6 +6,11 @@ Perfulandia SPA es una empresa que necesita mejorar su sistema actual, ya que el
 
 Para solucionar esto, se desarrollan microservicios separados, donde cada uno se encarga de una parte específica del sistema.
 
+INTEGRANTES
+
+- Javier Ancaten
+- Claudio Córdova
+- Nicolás Quezada
 
 MICRO SERVICIOS DESARROLLADOS
 
