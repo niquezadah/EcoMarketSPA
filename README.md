@@ -1,62 +1,172 @@
-EcoMarketSPA
+PERFULANDIA SPA
 
-Proyecto de DUOC UC para la asignatura Desarrollo Fullstack I 
-El objetivo es crear una solución backend para EcoMarket usando una arquitectura de microservicios con SPRING BOOT
+Proyecto de microservicios desarrollado para la asignatura Desarrollo FullStack I.
 
-Descripción
+Perfulandia SPA es una empresa que necesita mejorar su sistema actual, ya que el crecimiento de sus sucursales y clientes hizo que el sistema monolítico comenzara a tener problemas de rendimiento y disponibilidad.
 
-EcoMarket SPA necesita separar las funciones principales de su sistema en servicios independientes.
-En este repositorio se desarrollan microservicios básicos para gestionar usuarios, productos, tiendas, ventas, pedidos, pagos, logística, soporte y monitoreo del sistema mediante una API REST.
+Para solucionar esto, se desarrollan microservicios separados, donde cada uno se encarga de una parte específica del sistema.
 
-Microservicios del proyecto
 
-usuarios-seguridad-service
-Gestiona usuarios, roles, permisos e inicio de sesión
+MICRO SERVICIOS DESARROLLADOS
+
+En este proyecto se trabajaron los siguientes microservicios:
+
+- tiendas-service
+- inventario-catalogo-service
+- soporte-resena-service
+
+
+DESCRIPCION DE LOS SERVICIOS
+
+tiendas-service
+
+Se encarga de gestionar las tiendas o sucursales de Perfulandia.
+
+Puerto:
+
+8081
+
+Ruta principal:
+
+/api/v1/tiendas
+
+Permite listar, buscar, registrar, actualizar, eliminar y cambiar el estado de una tienda.
+
 
 inventario-catalogo-service
-Gestiona productos, categorías, stock y búsqueda de productos
 
-tiendas-reportes-service
-Gestiona tiendas, sucursales, horarios y reportes simples
+Se encarga de gestionar los productos del catálogo.
 
-ventas-facturacion-service
-Gestiona ventas, devoluciones, reclamaciones y facturación
+Puerto:
 
-pedidos-carrito-service
-Gestiona carrito de compras, pedidos e historial de pedidos
+8082
 
-pagos-service
-Gestiona pagos, confirmaciones y estados de pago
+Ruta principal:
 
-logistica-proveedores-service
-Gestiona envíos, proveedores, recepción de mercadería y estados de entrega
+/api/v1/productos
 
-soporte-resenas-service
-Gestiona tickets de soporte, reseñas y calificaciones
+Permite listar, buscar, registrar, actualizar y eliminar productos. También permite filtrar productos por tienda, categoría y disponibilidad.
 
-observabilidad-respaldo-service
-Gestiona monitoreo básico, alertas, respaldos y restauración de dato
+Este servicio se comunica con tiendas-service para validar que una tienda exista antes de asociarle un producto.
 
-Tecnologías usadas
 
-Java
-Spring Boot
-Maven
-Spring Data JPA
-MySQL
-Postman
-GitHub
+soporte-resena-service
 
-Estructura general
+Se encarga de gestionar las reseñas y calificaciones de productos.
 
-EcoMarketSPA/
-─ usuarios-seguridad-service/
-─ inventario-catalogo-service/
-─ tiendas-reportes-service/
-─ ventas-facturacion-service/
-─ pedidos-carrito-service/
-─ pagos-service/
-─ logistica-proveedores-service/
-─ soporte-resenas-service/
-─ observabilidad-respaldo-service/
-─ README.md
+Puerto:
+
+8083
+
+Ruta principal:
+
+/api/v1/resenas
+
+Permite listar, buscar, registrar, actualizar y eliminar reseñas. También permite filtrar reseñas por producto, por calificación y por estado activo.
+
+Este servicio se comunica con inventario-catalogo-service para validar que un producto exista antes de registrar una reseña.
+
+
+TECNOLOGIAS UTILIZADAS
+
+- Java
+- Spring Boot
+- Spring Web
+- Spring Data JPA
+- MySQL
+- Maven
+- Lombok
+- Validation
+- JUnit
+- Mockito
+- Swagger / OpenAPI
+- Git y GitHub
+
+
+ARQUITECTURA
+
+Los microservicios siguen una estructura por capas:
+
+Controller -> Service -> Repository -> Model / DTO
+
+Cada capa cumple una función dentro del proyecto:
+
+- controller: recibe las solicitudes HTTP
+- service: contiene la lógica del negocio
+- repository: se comunica con la base de datos
+- model: representa las tablas de la base de datos
+- dto: se usa para enviar y recibir datos
+- exception: maneja errores del sistema
+- config: contiene configuraciones como Swagger o RestTemplate
+
+
+BASES DE DATOS
+
+Cada microservicio usa su propia base de datos en MySQL.
+
+- ecomarket_tiendas_db
+- ecomarket_inventario_catalogo_db
+- ecomarket_soporte_resena_db
+
+Los nombres de las bases de datos se mantienen así porque fueron creados en parte para otro proyecto.
+
+
+SWAGGER
+
+Cada microservicio tiene documentación con Swagger.
+
+- tiendas-service: http://localhost:8081/swagger-ui/index.html
+- inventario-catalogo-service: http://localhost:8082/swagger-ui/index.html
+- soporte-resena-service: http://localhost:8083/swagger-ui/index.html
+
+En Swagger se pueden revisar los endpoints, parámetros, ejemplos de JSON y respuestas HTTP.
+
+
+PRUEBAS UNITARIAS
+
+El proyecto incluye pruebas unitarias para los servicios y controladores.
+
+Para ejecutar las pruebas, se debe entrar a cada microservicio y usar:
+
+.\mvnw.cmd test
+
+Resultado esperado:
+
+BUILD SUCCESS
+Failures: 0
+Errors: 0
+Skipped: 0
+
+
+EJECUCION LOCAL
+
+Para ejecutar el proyecto se debe tener MySQL iniciado.
+
+Luego, se levanta cada microservicio por separado con:
+
+.\mvnw.cmd spring-boot:run
+
+No se utiliza Docker en esta evaluación.
+
+
+API GATEWAY
+
+Las rutas esperadas para integrarse con Gateway son:
+
+- /api/v1/tiendas
+- /api/v1/productos
+- /api/v1/resenas
+
+
+ESTADO ACTUAL
+
+El proyecto cuenta con:
+
+- microservicios funcionales
+- CRUD en los servicios principales
+- conexión con MySQL
+- validaciones
+- comunicación entre microservicios
+- manejo de errores
+- pruebas unitarias
+- documentación Swagger
