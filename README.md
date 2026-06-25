@@ -104,12 +104,9 @@ BASES DE DATOS
 
 Cada microservicio usa su propia base de datos en MySQL.
 
-- ecomarket_tiendas_db
-- ecomarket_inventario_catalogo_db
-- ecomarket_soporte_resena_db
-
-Los nombres de las bases de datos se mantienen así porque fueron creados en parte para otro proyecto.
-
+- perfulandia_tiendas_db
+- perfulandia_inventario_catalogo_db
+- perfulandia_soporte_resena_db
 
 SWAGGER
 
