@@ -53,7 +53,7 @@ class TiendaControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].idTienda").value(1L))
-                .andExpect(jsonPath("$[0].nombre").value("ECOMARKET CONCEPCION"))
+                .andExpect(jsonPath("$[0].nombre").value("PERFULANDIA CONCEPCION"))
                 .andExpect(jsonPath("$[0].activa").value(true));
 
         Mockito.verify(tiendaService).listarTiendas();
@@ -71,7 +71,7 @@ class TiendaControllerTest {
         mockMvc.perform(get("/api/v1/tiendas/{id}", id))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.idTienda").value(id))
-                .andExpect(jsonPath("$.nombre").value("ECOMARKET CONCEPCION"))
+                .andExpect(jsonPath("$.nombre").value("PERFULANDIA CONCEPCION"))
                 .andExpect(jsonPath("$.ciudad").value("CONCEPCION"))
                 .andExpect(jsonPath("$.activa").value(true));
 
@@ -106,7 +106,7 @@ class TiendaControllerTest {
                         .content(objectMapper.writeValueAsString(tiendaEntrada)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.idTienda").value(1L))
-                .andExpect(jsonPath("$.nombre").value("ECOMARKET CONCEPCION"))
+                .andExpect(jsonPath("$.nombre").value("PERFULANDIA CONCEPCION"))
                 .andExpect(jsonPath("$.region").value("BIO BIO"))
                 .andExpect(jsonPath("$.activa").value(true));
 
@@ -147,7 +147,7 @@ class TiendaControllerTest {
                         .content(objectMapper.writeValueAsString(tiendaEntrada)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.idTienda").value(id))
-                .andExpect(jsonPath("$.nombre").value("ECOMARKET CONCEPCION"))
+                .andExpect(jsonPath("$.nombre").value("PERFULANDIA CONCEPCION"))
                 .andExpect(jsonPath("$.activa").value(true));
 
         Mockito.verify(tiendaService).existeTiendaPorId(id);
@@ -190,7 +190,7 @@ class TiendaControllerTest {
                         .content(objectMapper.writeValueAsString(estadoDTO)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.idTienda").value(id))
-                .andExpect(jsonPath("$.nombre").value("ECOMARKET CONCEPCION"))
+                .andExpect(jsonPath("$.nombre").value("PERFULANDIA CONCEPCION"))
                 .andExpect(jsonPath("$.activa").value(false));
 
         Mockito.verify(tiendaService).actualizarEstadoTienda(id, false);
@@ -266,7 +266,7 @@ class TiendaControllerTest {
     private TiendaDTO crearTiendaDTO(Long id, Boolean activa) {
         return new TiendaDTO(
                 id,
-                "ECOMARKET CONCEPCION",
+                "PERFULANDIA CONCEPCION",
                 "PEDRO DE VALDIVIA 123",
                 "CONCEPCION",
                 "CONCEPCION",

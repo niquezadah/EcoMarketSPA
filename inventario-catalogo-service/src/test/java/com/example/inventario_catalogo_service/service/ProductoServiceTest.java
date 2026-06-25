@@ -292,7 +292,7 @@ class ProductoServiceTest {
     private TiendaDTO crearTiendaDTO(Long id) {
         return new TiendaDTO(
                 id,
-                "ECOMARKET CONCEPCION",
+                "PERFULANDIA CONCEPCION",
                 "PEDRO DE VALDIVIA 123",
                 "CONCEPCION",
                 "CONCEPCION",

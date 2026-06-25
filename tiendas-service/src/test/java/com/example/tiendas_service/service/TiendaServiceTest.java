@@ -40,7 +40,7 @@ class TiendaServiceTest {
         assertAll(
                 () -> assertEquals(1, resultado.size()),
                 () -> assertEquals(1L, resultado.get(0).getIdTienda()),
-                () -> assertEquals("ECOMARKET CONCEPCION", resultado.get(0).getNombre()),
+                () -> assertEquals("PERFULANDIA CONCEPCION", resultado.get(0).getNombre()),
                 () -> assertEquals("BIO BIO", resultado.get(0).getRegion()),
                 () -> assertTrue(resultado.get(0).getActiva())
         );
@@ -62,7 +62,7 @@ class TiendaServiceTest {
         assertTrue(resultado.isPresent());
         assertAll(
                 () -> assertEquals(id, resultado.get().getIdTienda()),
-                () -> assertEquals("ECOMARKET CONCEPCION", resultado.get().getNombre()),
+                () -> assertEquals("PERFULANDIA CONCEPCION", resultado.get().getNombre()),
                 () -> assertEquals("CONCEPCION", resultado.get().getCiudad()),
                 () -> assertTrue(resultado.get().getActiva())
         );
@@ -99,7 +99,7 @@ class TiendaServiceTest {
         //then
         assertAll(
                 () -> assertEquals(1L, resultado.getIdTienda()),
-                () -> assertEquals("ECOMARKET CONCEPCION", resultado.getNombre()),
+                () -> assertEquals("PERFULANDIA CONCEPCION", resultado.getNombre()),
                 () -> assertEquals("PEDRO DE VALDIVIA 123", resultado.getDireccion()),
                 () -> assertEquals("BIO BIO", resultado.getRegion()),
                 () -> assertTrue(resultado.getActiva())
@@ -166,7 +166,7 @@ class TiendaServiceTest {
         assertTrue(resultado.isPresent());
         assertAll(
                 () -> assertEquals(id, resultado.get().getIdTienda()),
-                () -> assertEquals("ECOMARKET CONCEPCION", resultado.get().getNombre()),
+                () -> assertEquals("PERFULANDIA CONCEPCION", resultado.get().getNombre()),
                 () -> assertFalse(resultado.get().getActiva())
         );
 
@@ -193,7 +193,7 @@ class TiendaServiceTest {
     private Tienda crearTienda(Long id, Boolean activa) {
         return new Tienda(
                 id,
-                "ECOMARKET CONCEPCION",
+                "PERFULANDIA CONCEPCION",
                 "PEDRO DE VALDIVIA 123",
                 "CONCEPCION",
                 "CONCEPCION",
@@ -210,7 +210,7 @@ class TiendaServiceTest {
     private TiendaDTO crearTiendaDTO(Long id, Boolean activa) {
         return new TiendaDTO(
                 id,
-                "ECOMARKET CONCEPCION",
+                "PERFULANDIA CONCEPCION",
                 "PEDRO DE VALDIVIA 123",
                 "CONCEPCION",
                 "CONCEPCION",
