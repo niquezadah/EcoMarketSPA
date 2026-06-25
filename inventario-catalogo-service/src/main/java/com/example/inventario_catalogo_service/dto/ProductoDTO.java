@@ -1,5 +1,7 @@
 package com.example.inventario_catalogo_service.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,32 +14,70 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(
+        name = "ProductoDTO",
+        description = "Datos de un producto registrado en el catálogo de Perfulandia."
+)
 public class ProductoDTO {
 
+    @Schema(
+            description = "Identificador único del producto. Se genera automáticamente al registrar un producto.",
+            example = "1",
+            accessMode = Schema.AccessMode.READ_ONLY
+    )
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long idProducto;
 
+    @Schema(
+            description = "Nombre del producto. Campo obligatorio y con máximo de 100 caracteres.",
+            example = "Shampoo ecológico"
+    )
     @NotBlank(message = "El NOMBRE del PRODUCTO es OBLIGATORIO")
-    @Size(max = 120, message = "El NOMBRE no puede superar los 120 caracteres")
+    @Size(max = 100, message = "El NOMBRE no puede superar los 100 caracteres")
     private String nombre;
 
-    @Size(max = 500, message = "La DESCRIPCIÓN no puede superar los 500 caracteres")
+    @Schema(
+            description = "Descripción general del producto.",
+            example = "Producto ecológico para el cuidado personal."
+    )
+    @Size(max = 300, message = "La DESCRIPCIÓN no puede superar los 300 caracteres")
     private String descripcion;
 
-    @NotBlank(message = "La CATEGORÍA es OBLIGATORIA")
-    @Size(max = 80, message = "La CATEGORÍA no puede superar los 80 caracteres")
+    @Schema(
+            description = "Categoría a la que pertenece el producto.",
+            example = "CUIDADO PERSONAL"
+    )
+    @NotBlank(message = "La CATEGORÍA del PRODUCTO es OBLIGATORIA")
+    @Size(max = 100, message = "La CATEGORÍA no puede superar los 100 caracteres")
     private String categoria;
 
-    @NotNull(message = "El STOCK es OBLIGATORIO")
+    @Schema(
+            description = "Cantidad disponible del producto en inventario.",
+            example = "20"
+    )
+    @NotNull(message = "El STOCK del PRODUCTO es OBLIGATORIO")
     @Min(value = 0, message = "El STOCK no puede ser negativo")
     private Integer stock;
 
-    @NotNull(message = "El PRECIO es OBLIGATORIO")
-    @PositiveOrZero(message = "El PRECIO no puede ser NEGATIVO")
+    @Schema(
+            description = "Precio unitario del producto.",
+            example = "4990.0"
+    )
+    @NotNull(message = "El PRECIO del PRODUCTO es OBLIGATORIO")
+    @PositiveOrZero(message = "El PRECIO no puede ser negativo")
     private Double precio;
 
-    @NotNull(message = "El estado DISPONIBLE es OBLIGATORIO")
+    @Schema(
+            description = "Indica si el producto está disponible para venta.",
+            example = "true"
+    )
+    @NotNull(message = "La DISPONIBILIDAD del PRODUCTO es OBLIGATORIA")
     private Boolean disponible;
 
+    @Schema(
+            description = "ID de la tienda a la que pertenece el producto. Debe corresponder a una tienda existente.",
+            example = "1"
+    )
     @NotNull(message = "El ID de la TIENDA es OBLIGATORIO")
     private Long idTienda;
 }
