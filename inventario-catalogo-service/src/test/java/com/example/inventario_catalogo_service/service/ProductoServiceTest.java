@@ -106,7 +106,7 @@ class ProductoServiceTest {
         ProductoDTO productoDTO = crearProductoDTO(null, true);
         Producto productoGuardado = crearProducto(1L, true);
 
-        String url = "http://localhost:8081/api/v1/tiendas/1";
+        String url = "http://localhost:8091/api/v1/tiendas/1";
 
         when(restTemplate.getForObject(url, TiendaDTO.class)).thenReturn(crearTiendaDTO(1L));
         when(productoRepository.save(any(Producto.class))).thenReturn(productoGuardado);
@@ -134,7 +134,7 @@ class ProductoServiceTest {
     void guardarProducto_cuandoTiendaNoExiste_deberiaLanzarRuntimeException() {
         //given
         ProductoDTO productoDTO = crearProductoDTO(null, true);
-        String url = "http://localhost:8081/api/v1/tiendas/1";
+        String url = "http://localhost:8091/api/v1/tiendas/1";
 
         HttpClientErrorException errorNotFound = HttpClientErrorException.create(
                 HttpStatus.NOT_FOUND,

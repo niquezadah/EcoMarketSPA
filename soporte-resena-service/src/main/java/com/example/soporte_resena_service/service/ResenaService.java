@@ -62,7 +62,7 @@ public class ResenaService {
 
     private void validarProductoExiste(Long idProducto) {
         try {
-            String url = "http://localhost:8082/api/v1/productos/" + idProducto;
+            String url = "http://localhost:8092/api/v1/productos/" + idProducto;
             restTemplate.getForObject(url, ProductoDTO.class);
         } catch (HttpClientErrorException.NotFound ex) {
             throw new RuntimeException("El producto con ID " + idProducto + " no existe");

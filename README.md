@@ -29,7 +29,7 @@ Se encarga de gestionar las tiendas o sucursales de Perfulandia.
 
 Puerto:
 
-8081
+8091
 
 Ruta principal:
 
@@ -44,7 +44,7 @@ Se encarga de gestionar los productos del catálogo.
 
 Puerto:
 
-8082
+8092
 
 Ruta principal:
 
@@ -61,7 +61,7 @@ Se encarga de gestionar las reseñas y calificaciones de productos.
 
 Puerto:
 
-8083
+8093
 
 Ruta principal:
 
@@ -117,9 +117,9 @@ SWAGGER
 
 Cada microservicio tiene documentación con Swagger.
 
-- tiendas-service: http://localhost:8081/swagger-ui/index.html
-- inventario-catalogo-service: http://localhost:8082/swagger-ui/index.html
-- soporte-resena-service: http://localhost:8083/swagger-ui/index.html
+- tiendas-service: http://localhost:8091/swagger-ui/index.html
+- inventario-catalogo-service: http://localhost:8092/swagger-ui/index.html
+- soporte-resena-service: http://localhost:8093/swagger-ui/index.html
 
 En Swagger se pueden revisar los endpoints, parámetros, ejemplos de JSON y respuestas HTTP.
 

@@ -20,6 +20,6 @@ class OpenApiConfigTest {
         assertNotNull(openApiDefinition);
         assertEquals("Perfulandia - API de Tiendas", openApiDefinition.info().title());
         assertEquals("v1", openApiDefinition.info().version());
-        assertEquals("http://localhost:8081", openApiDefinition.servers()[0].url());
+        assertEquals("http://localhost:8091", openApiDefinition.servers()[0].url());
     }
 }

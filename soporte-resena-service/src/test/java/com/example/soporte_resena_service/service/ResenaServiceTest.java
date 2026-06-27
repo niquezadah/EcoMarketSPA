@@ -106,7 +106,7 @@ class ResenaServiceTest {
         ResenaDTO resenaDTO = crearResenaDTO(null, true);
         Resena resenaGuardada = crearResena(1L, true);
 
-        String url = "http://localhost:8082/api/v1/productos/1";
+        String url = "http://localhost:8092/api/v1/productos/1";
 
         when(restTemplate.getForObject(url, ProductoDTO.class)).thenReturn(crearProductoDTO(1L));
         when(resenaRepository.save(any(Resena.class))).thenReturn(resenaGuardada);
@@ -132,7 +132,7 @@ class ResenaServiceTest {
     void guardarResena_cuandoProductoNoExiste_deberiaLanzarRuntimeException() {
         //given
         ResenaDTO resenaDTO = crearResenaDTO(null, true);
-        String url = "http://localhost:8082/api/v1/productos/1";
+        String url = "http://localhost:8092/api/v1/productos/1";
 
         HttpClientErrorException errorNotFound = HttpClientErrorException.create(
                 HttpStatus.NOT_FOUND,
@@ -163,7 +163,7 @@ class ResenaServiceTest {
         ResenaDTO resenaDTO = crearResenaDTO(1L, true);
         Resena resenaActualizada = crearResena(1L, true);
 
-        String url = "http://localhost:8082/api/v1/productos/1";
+        String url = "http://localhost:8092/api/v1/productos/1";
 
         when(restTemplate.getForObject(url, ProductoDTO.class)).thenReturn(crearProductoDTO(1L));
         when(resenaRepository.save(any(Resena.class))).thenReturn(resenaActualizada);
@@ -188,7 +188,7 @@ class ResenaServiceTest {
     void actualizarResena_cuandoProductoNoExiste_deberiaLanzarRuntimeException() {
         //given
         ResenaDTO resenaDTO = crearResenaDTO(1L, true);
-        String url = "http://localhost:8082/api/v1/productos/1";
+        String url = "http://localhost:8092/api/v1/productos/1";
 
         HttpClientErrorException errorNotFound = HttpClientErrorException.create(
                 HttpStatus.NOT_FOUND,

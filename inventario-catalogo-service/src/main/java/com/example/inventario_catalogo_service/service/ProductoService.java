@@ -100,7 +100,7 @@ public class ProductoService {
 
     private void validarTiendaExiste(Long idTienda) {
         try {
-            String url = "http://localhost:8081/api/v1/tiendas/" + idTienda;
+            String url = "http://localhost:8091/api/v1/tiendas/" + idTienda;
             restTemplate.getForObject(url, TiendaDTO.class);
         } catch (HttpClientErrorException.NotFound ex) {
             throw new RuntimeException("La tienda con ID " + idTienda + " no existe");
