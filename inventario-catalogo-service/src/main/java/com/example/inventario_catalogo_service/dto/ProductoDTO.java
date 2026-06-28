@@ -30,7 +30,7 @@ public class ProductoDTO {
 
     @Schema(
             description = "Nombre del producto. Campo obligatorio y con máximo de 100 caracteres.",
-            example = "Shampoo ecológico"
+            example = "Eau de Parfum Rosas del Sur"
     )
     @NotBlank(message = "El NOMBRE del PRODUCTO es OBLIGATORIO")
     @Size(max = 100, message = "El NOMBRE no puede superar los 100 caracteres")
@@ -38,14 +38,14 @@ public class ProductoDTO {
 
     @Schema(
             description = "Descripción general del producto.",
-            example = "Producto ecológico para el cuidado personal."
+            example = "Perfume floral de larga duración para uso diario."
     )
     @Size(max = 300, message = "La DESCRIPCIÓN no puede superar los 300 caracteres")
     private String descripcion;
 
     @Schema(
             description = "Categoría a la que pertenece el producto.",
-            example = "CUIDADO PERSONAL"
+            example = "PERFUMERIA"
     )
     @NotBlank(message = "La CATEGORÍA del PRODUCTO es OBLIGATORIA")
     @Size(max = 100, message = "La CATEGORÍA no puede superar los 100 caracteres")
@@ -53,7 +53,7 @@ public class ProductoDTO {
 
     @Schema(
             description = "Cantidad disponible del producto en inventario.",
-            example = "20"
+            example = "35"
     )
     @NotNull(message = "El STOCK del PRODUCTO es OBLIGATORIO")
     @Min(value = 0, message = "El STOCK no puede ser negativo")
@@ -61,7 +61,7 @@ public class ProductoDTO {
 
     @Schema(
             description = "Precio unitario del producto.",
-            example = "4990.0"
+            example = "24990.0"
     )
     @NotNull(message = "El PRECIO del PRODUCTO es OBLIGATORIO")
     @PositiveOrZero(message = "El PRECIO no puede ser negativo")

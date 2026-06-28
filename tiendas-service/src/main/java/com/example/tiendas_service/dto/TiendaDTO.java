@@ -73,7 +73,7 @@ public class TiendaDTO {
 
     @Schema(
             description = "Nombre del personal responsable o asignado a la tienda.",
-            example = "María González"
+            example = "Camila Torres"
     )
     @Size(max = 300, message = "El PERSONAL ASIGNADO no puede superar los 300 caracteres")
     private String personalAsignado;
@@ -103,7 +103,7 @@ public class TiendaDTO {
 
     @Schema(
             description = "Políticas o condiciones locales aplicables a la tienda.",
-            example = "Uso de bolsas reutilizables y despacho según cobertura local."
+            example = "Atención presencial, retiro en tienda y despacho según disponibilidad local."
     )
     @Size(max = 500, message = "Las POLITICAS LOCALES no pueden superar los 500 caracteres")
     private String politicasLocales;

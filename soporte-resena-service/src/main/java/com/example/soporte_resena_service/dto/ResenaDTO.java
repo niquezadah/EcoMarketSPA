@@ -37,7 +37,7 @@ public class ResenaDTO {
 
     @Schema(
             description = "Nombre del cliente que realiza la reseña.",
-            example = "Juan Pérez"
+            example = "Valentina Rojas"
     )
     @NotBlank(message = "El NOMBRE del CLIENTE es OBLIGATORIO")
     @Size(max = 100, message = "El NOMBRE del CLIENTE no puede superar los 100 caracteres")
@@ -54,7 +54,7 @@ public class ResenaDTO {
 
     @Schema(
             description = "Comentario escrito por el cliente sobre el producto.",
-            example = "Excelente producto, buen aroma y presentación."
+            example = "Aroma elegante, buena fijación y presentación muy cuidada."
     )
     @NotBlank(message = "El COMENTARIO es OBLIGATORIO")
     @Size(max = 500, message = "El COMENTARIO no puede superar los 500 caracteres")
