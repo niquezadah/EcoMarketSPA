@@ -19,6 +19,8 @@ En este proyecto se trabajaron los siguientes microservicios:
 - tiendas-service
 - inventario-catalogo-service
 - soporte-resena-service
+- ventas-facturacion-service
+- carrito-service
 
 
 DESCRIPCION DE LOS SERVICIOS
